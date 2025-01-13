@@ -11,14 +11,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    
-uses: actions/checkout@v4
-name: Build the Docker image
-  env: 
-    DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
-    DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-  run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-name: Build the Docker image 
-    run: docker build -t ibrahimmbh1/cicd-pipeline
-name: Push Dockerhub
-  run: docker push -t ibrahimbh1/cicd-pipeline:latest
+    - uses: actions/checkout@v4
+    - name: Build the Docker image
+      env: 
+        DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
+        DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+      run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+
+    - name: Build the Docker image 
+      run: docker build -t ibrahimbh1/cicd-pipeline
+    - name: Push Dockerhub
+      run: docker push -t ibrahimbh1/cicd-pipeline:latest 
